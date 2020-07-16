@@ -1,11 +1,33 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import History from './views/History';
+import P404 from './views/P404';
+import Login from './components/Login';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
 
-    </div>
+
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route exact path="/history">
+          <History />
+        </Route>
+        <Route path="*">
+          <P404></P404>
+        </Route>
+      </Switch>
+    </Router>
+
   );
 }
 
