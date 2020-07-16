@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
+import Layout from './Layout'
 
 
 const Login = () => {
@@ -42,7 +43,7 @@ const Login = () => {
     return (
 
 
-        <div className='container'>
+        <Layout className='container'>
             <label htmlFor='nombre'>Nombre</label>
             <input type='text' name='nombre' id='nombre' value={newUser.nombre} onChange={handleChange} />
             <label>cuenta</label>
@@ -51,7 +52,7 @@ const Login = () => {
             <Link to="/history">
                 <button className="btn btn-danger">Home</button>
             </Link>
-        </div>
+        </Layout>
 
 
 

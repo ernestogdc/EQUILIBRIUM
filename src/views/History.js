@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Operation from '../components/Operation';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
+import Layout from '../components/Layout'
 
 // "nombre":"Daniel",
 //     "cuenta":500000000,
@@ -49,13 +50,13 @@ const History = () => {
 
 
     return (
-        <>
+        <Layout>
             <Link to="/">
                 <button className="btn btn-danger">Home</button>
             </Link>
             {showOpps()}
 
-        </>
+        </Layout>
     );
 }
 
