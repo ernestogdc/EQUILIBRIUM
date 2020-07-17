@@ -16,13 +16,15 @@ import Layout from '../components/Layout'
 const History = () => {
     const [operation, setOpp] = useState({});
     const [error, setError] = useState(null);
+    const [idSession, setIdSession] = useState(window.sessionStorage.getItem('id'));
+
 
     useEffect(() => {
         getOpp();
     }, [operation])
 
     const getOpp = () => {
-        axios.get('https://equlibrium-pfinal.firebaseio.com/users/-MCJoRRXlGQI-HX1JPXS.json')
+        axios.get(`https://equlibrium-pfinal.firebaseio.com/users/${idSession}.json`)
             .then(({ data, status }) => {
                 if (data !== null) {
                     setOpp(data.operaciones);

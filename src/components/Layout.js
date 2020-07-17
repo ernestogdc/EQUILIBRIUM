@@ -6,7 +6,7 @@ const Layout = ({ title, children }) => {
     return (
         <>
             <Navbar title={title} />
-            {children}
+            <div className='d-flex justify-content-center'>{children}</div>
 
         </>
     );

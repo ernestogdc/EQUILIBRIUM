@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { UncontrolledCollapse, ButtonToggle, CardBody, Card } from 'reactstrap';
@@ -8,9 +8,18 @@ import { UncontrolledCollapse, ButtonToggle, CardBody, Card } from 'reactstrap';
 
 const Operation = ({ id, title, amount, type, date }) => {
     const history = useHistory();
+    const [idSession, setIdSession] = useState(window.sessionStorage.getItem('id'));
+    const [idOperation, setIdOpp] = useState(window.sessionStorage.getItem('idOpp'));
+
+
+    useEffect(() => {
+        console.log(idSession)
+        console.log(idOperation)
+
+    }, [idSession, idOperation])
 
     const deleteOpp = () => {
-        axios.delete(`https://equlibrium-pfinal.firebaseio.com/users/-MCJoRRXlGQI-HX1JPXS/operaciones/${id}.json`)
+        axios.delete(`https://equlibrium-pfinal.firebaseio.com/users/${idSession}/operaciones/${id}.json`)
             .then(() => {
                 history.push("/history");
             })
@@ -21,7 +30,7 @@ const Operation = ({ id, title, amount, type, date }) => {
     }
 
     return (
-        <div className='container'>
+        <div className='container '>
             <div color="primary" id={`${id}`} style={{ marginBottom: '1rem' }}>
                 <h3>{title}</h3>
 

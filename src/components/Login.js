@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
-import Layout from './Layout'
+import Layout from './Layout';
+import Home from '../views/Home';
 
 
 const Login = () => {
@@ -10,6 +11,12 @@ const Login = () => {
         cuenta: 0
     });
     const [userId, setUserId] = useState()
+
+    window.sessionStorage.setItem('id', userId)
+
+
+
+
 
     const handleChange = (event) => {
         switch (event.target.id) {
@@ -32,7 +39,9 @@ const Login = () => {
             newUser.cuenta >= 0) {
             axios.post('https://equlibrium-pfinal.firebaseio.com/users.json', newUser)
                 .then(({ data }) => {
-                    setUserId(data)
+                    setUserId(data.name)
+
+
 
                 })
         } else {
@@ -52,6 +61,10 @@ const Login = () => {
             <Link to="/history">
                 <button className="btn btn-danger">Home</button>
             </Link>
+
+
+
+
         </Layout>
 
 

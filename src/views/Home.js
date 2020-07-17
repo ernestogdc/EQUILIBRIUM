@@ -10,7 +10,7 @@ const Home = ({ id }) => {
     const [user, setUser] = useState({})
     const [oper, setOper] = useState([])
     const getUser = () => {
-        axios.get(`https://equlibrium-pfinal.firebaseio.com/users/${id}.json`)
+        axios.get(`https://equlibrium-pfinal.firebaseio.com/users/-MCJoRRXlGQI-HX1JPXS.json`)
             .then(({ data }) => {
                 setUser(data);
                 const operationTmp = Object.values(data.operaciones);
