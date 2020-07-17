@@ -22,7 +22,7 @@ const History = () => {
     }, [operation])
 
     const getOpp = () => {
-        axios.get('https://equlibrium-pfinal.firebaseio.com/users/-MCJtARTmPMVGnjDa8bB.json')
+        axios.get('https://equlibrium-pfinal.firebaseio.com/users/-MCJoRRXlGQI-HX1JPXS.json')
             .then(({ data, status }) => {
                 if (data !== null) {
                     setOpp(data.operaciones);
@@ -51,9 +51,7 @@ const History = () => {
 
     return (
         <Layout>
-            <Link to="/">
-                <button className="btn btn-danger">Home</button>
-            </Link>
+
             {showOpps()}
 
         </Layout>

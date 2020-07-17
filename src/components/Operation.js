@@ -10,7 +10,7 @@ const Operation = ({ id, title, amount, type, date }) => {
     const history = useHistory();
 
     const deleteOpp = () => {
-        axios.delete(`https://equlibrium-pfinal.firebaseio.com/users/-MCJtARTmPMVGnjDa8bB/operaciones/${id}.json`)
+        axios.delete(`https://equlibrium-pfinal.firebaseio.com/users/-MCJoRRXlGQI-HX1JPXS/operaciones/${id}.json`)
             .then(() => {
                 history.push("/history");
             })
