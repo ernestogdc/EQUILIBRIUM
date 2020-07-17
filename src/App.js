@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import History from './views/History';
 import P404 from './views/P404';
 import Login from './components/Login';
@@ -9,28 +9,60 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Redirect
 } from "react-router-dom";
+
+const auth = {
+  isAuthenticated: false,
+  authenticate() {
+    auth.isAuthenticated = true;
+  },
+  signout() {
+    auth.isAuthenticated = false;
+  }
+};
+
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login">
+        <Route exact path="/">
           <Login />
         </Route>
-        <Route exact path="/history">
-          <History />
-        </Route>
-        <Route exact path="/">
-          <Home id='-MCJoRRXlGQI-HX1JPXS' />
-        </Route>
-        <Route exact path="/newopp">
-          <Newopp />
-        </Route>
-        <Route path="*">
-          <P404></P404>
-        </Route>
+          <Route exact path="/history">
+            <History />
+          </Route>
+          <Route exact path="/home">
+            <Home/>
+          </Route>
+          <Route exact path="/newopp/:op/:tipo">
+            <Newopp />
+          </Route>
+          <Route path="*">
+            <P404></P404>
+          </Route>
+        <PrivateRoute path="/protected">
+        </PrivateRoute>
       </Switch>
     </Router>
 

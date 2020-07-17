@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Operation from '../components/Operation';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout'
+import { Container } from 'reactstrap';
 
 // "nombre":"Daniel",
 //     "cuenta":500000000,
@@ -16,7 +17,7 @@ import Layout from '../components/Layout'
 const History = () => {
     const [operation, setOpp] = useState({});
     const [error, setError] = useState(null);
-    const [idSession, setIdSession] = useState(window.sessionStorage.getItem('id'));
+    const [idSession] = useState(window.sessionStorage.getItem('id'));
 
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const History = () => {
 
     const showOpps = () => {
         return (operation == null ? 'No Existe ninguna operacion' :
-            Object.keys(operation).map(opp => <Operation
+            Object.keys(operation).reverse().map(opp => <Operation 
                 key={opp}
                 id={opp}
                 title={operation[opp].titulo}
@@ -53,9 +54,9 @@ const History = () => {
 
     return (
         <Layout>
-
-            {showOpps()}
-
+            <Container>
+                {showOpps()}
+            </Container>
         </Layout>
     );
 }
