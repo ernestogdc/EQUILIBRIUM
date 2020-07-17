@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {
+    Card, CardHeader, CardBody, CardText, Button, Container, Table
+} from 'reactstrap';
 import Layout from './Layout'
 
 
@@ -9,7 +12,7 @@ const Login = () => {
         nombre: '',
         cuenta: 0
     });
-    const [userId, setUserId] = useState()
+    const [userId, setUserId] = useState("")
 
     const handleChange = (event) => {
         switch (event.target.id) {
@@ -32,8 +35,7 @@ const Login = () => {
             newUser.cuenta >= 0) {
             axios.post('https://equlibrium-pfinal.firebaseio.com/users.json', newUser)
                 .then(({ data }) => {
-                    setUserId(data)
-
+                    setUserId(data.name)
                 })
         } else {
             alert('No has llenado correctamente los campos')
@@ -44,12 +46,23 @@ const Login = () => {
 
 
         <Layout className='container'>
-            <label htmlFor='nombre'>Nombre</label>
-            <input type='text' name='nombre' id='nombre' value={newUser.nombre} onChange={handleChange} />
-            <label>cuenta</label>
-            <input type='number' name='cuenta' id='cuenta' value={newUser.cuenta} onChange={handleChange} />
-            <button onClick={createUser}> Crear usuario</button>
-            <Link to="/history">
+            <Container>
+                <Card className="text-center m-4">
+                    <CardHeader>Registro</CardHeader>
+                    <CardBody className="row">
+                        <>
+                            <label htmlFor='nombre'>Nombre </label>
+                            <input type='text' name='nombre' id='nombre' value={newUser.nombre} onChange={handleChange} />
+                        </>
+                        <CardText className="col">
+                            <label>cuenta</label>
+                            <input type='number' name='cuenta' id='cuenta' value={newUser.cuenta} onChange={handleChange} />
+                        </CardText>
+                        <Button onClick={createUser} color="danger"> Crear usuario</Button>
+                    </CardBody>
+                </Card>
+            </Container>
+            <Link to={"/home"}>
                 <button className="btn btn-danger">Home</button>
             </Link>
         </Layout>

@@ -16,14 +16,14 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login">
+        <Route exact path="/">
           <Login />
         </Route>
         <Route exact path="/history">
           <History />
         </Route>
-        <Route exact path="/">
-          <Home id='-MCJoRRXlGQI-HX1JPXS' />
+        <Route exact path="/home">
+          <Home/>
         </Route>
         <Route exact path="/newopp">
           <Newopp />

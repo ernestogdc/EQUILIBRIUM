@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
 import {
     Navbar, NavbarBrand, ButtonGroup, Button
 } from 'reactstrap'
@@ -12,10 +11,10 @@ const NavbarE = () => {
                 <img src="../Equ.png"></img>
             </NavbarBrand>
             <NavbarBrand>
-                <h1>EQUILIBRIUM</h1>
+                <h1 className="text-white">EQUILIBRIUM</h1>
             </NavbarBrand>
             <NavbarBrand>
-                <ButtonGroup>
+                <ButtonGroup style={{ backgroundColor: "#51C8CF",borderRadius: "5px"}}>
                     <Link to="/login">
                         <Button style={{ backgroundColor: "#51C8CF", borderColor: "#51C8CF" }}>Login</Button>
                     </Link>
